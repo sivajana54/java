@@ -1,5 +1,7 @@
 package in.vamsoft.dao;
 
+import in.vamsoft.training.dbutil.DbconnectionUtil;
+import in.vamsoft.training.model.UserModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,14 +10,17 @@ import java.sql.Statement;
 
 import org.apache.log4j.Logger;
 
-import in.vamsoft.training.dbutil.DbconnectionUtil;
-import in.vamsoft.training.model.UserModel;
+
 
 public class UserDao {
   public static Logger logger = Logger.getLogger(UserDao.class);
   static Connection Connection = null;
   static ResultSet rs = null;
 
+  /**
+   * @param bean.
+   * @return.
+   */
   public static UserModel login(UserModel bean) {
 
     // preparing some objects for connection
@@ -24,8 +29,8 @@ public class UserDao {
     String userName = bean.getUserName();
     String password = bean.getPassword();
 
-    String searchQuery = "select * from uservalidation where USER_NAME='" + userName + "' AND PASSWORD='" + password
-        + "'";
+    String searchQuery = "select * from uservalidation where USER_NAME='" + userName 
+                                                     + "' AND PASSWORD='" + password + "'";
 
     // "System.out.println" prints in the console; Normally used to trace the
     // process
@@ -44,10 +49,8 @@ public class UserDao {
       if (!more) {
         System.out.println("Sorry, you are not a registered user! Please sign up first");
         bean.setValid(false);
-      }
-
-      // if user exists set the isValid variable to true
-      else if (more) {
+   
+      } else if (more) {
         System.out.println("in elseif loop");
         String username = rs.getString("USER_NAME");
 
@@ -56,18 +59,16 @@ public class UserDao {
 
         bean.setValid(true);
       }
-    }
 
-    catch (Exception ex) {
+    } catch (Exception ex) {
       System.out.println("Log In failed: An Exception has occurred! " + ex);
-    }
-
-    // some exception handling
-    finally {
+  
+    } finally {
       if (rs != null) {
         try {
           rs.close();
         } catch (Exception e) {
+          e.printStackTrace();
         }
         rs = null;
       }
@@ -76,6 +77,7 @@ public class UserDao {
         try {
           stmt.close();
         } catch (Exception e) {
+          e.printStackTrace();
         }
         stmt = null;
       }
@@ -84,6 +86,7 @@ public class UserDao {
         try {
           Connection.close();
         } catch (Exception e) {
+          e.printStackTrace();
         }
 
         Connection = null;
@@ -94,6 +97,10 @@ public class UserDao {
 
   }
 
+  /**
+   * @param model.
+   * @return.
+   */
   public boolean reg(UserModel model) {
 
     System.out.println("inside the add method");
@@ -119,13 +126,18 @@ public class UserDao {
 
   }
 
+  /**
+   * @param user.
+   * @return.
+   */
   public static UserModel admin(UserModel user) {
     Statement stmt = null;
 
     String userName = "admin";
     String password = "admin";
 
-    String searchQuery = "select * from ADMIN where USER_NAME='" + userName + "' AND PASSWORD='" + password + "'";
+    String searchQuery = "select * from ADMIN where USER_NAME='" + userName 
+                                      + "' AND PASSWORD='" + password + "'";
 
     // "System.out.println" prints in the console; Normally used to trace the
     // process
@@ -144,10 +156,8 @@ public class UserDao {
       if (!more) {
         System.out.println("Sorry, you are not a registered user! Please sign up first");
         user.setValid(false);
-      }
-
-      // if user exists set the isValid variable to true
-      else if (more) {
+      
+      } else if (more) {
         System.out.println("in elseif loop");
         String username = rs.getString("USER_NAME");
 
@@ -156,18 +166,14 @@ public class UserDao {
 
         user.setValid(true);
       }
-    }
-
-    catch (Exception ex) {
+    } catch (Exception ex) {
       System.out.println("Log In failed: An Exception has occurred! " + ex);
-    }
-
-    // some exception handling
-    finally {
+    } finally {
       if (rs != null) {
         try {
           rs.close();
         } catch (Exception e) {
+          e.printStackTrace();
         }
         rs = null;
       }
@@ -176,6 +182,7 @@ public class UserDao {
         try {
           stmt.close();
         } catch (Exception e) {
+          e.printStackTrace();
         }
         stmt = null;
       }
@@ -184,6 +191,7 @@ public class UserDao {
         try {
           Connection.close();
         } catch (Exception e) {
+          e.printStackTrace();
         }
 
         Connection = null;
