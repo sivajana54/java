@@ -1,8 +1,9 @@
 package in.vamsoft.servlet;
 
+import in.vamsoft.dao.QuestionDao;
+import in.vamsoft.training.model.ModelQuestion;
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import in.vamsoft.training.Dao.QuestionDao;
-import in.vamsoft.training.model.ModelQuestion;
+
 
 @WebServlet("/ResultServlet")
 public class ResultServlet extends HttpServlet {
@@ -33,6 +33,7 @@ public class ResultServlet extends HttpServlet {
     int marks = 0;
     boolean result;
 
+    @SuppressWarnings("unchecked")
     List<ModelQuestion> questionList = (List<ModelQuestion>) session.getAttribute("ModelQuestion");
 
     for (ModelQuestion question : questionList) {

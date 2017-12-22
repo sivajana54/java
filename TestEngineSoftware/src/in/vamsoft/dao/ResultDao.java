@@ -1,4 +1,4 @@
-package in.vamsoft.training.Dao;
+package in.vamsoft.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ public class  ResultDao {
     @SuppressWarnings("unlikely-arg-type")
     public boolean getAnswers(String CorrectAnswer,String Question) {
       Connection Connection = null;
-      try(PreparedStatement preparedStatement = Connection.prepareStatement("select Question,CorrectAnswer from ModelQuestion")){
+      try(PreparedStatement preparedStatement = Connection.prepareStatement("select question,correctAnswer from ModelQuestion")){
         
         ResultSet rs = preparedStatement.executeQuery();
        

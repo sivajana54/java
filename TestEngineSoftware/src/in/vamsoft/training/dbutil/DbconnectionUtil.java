@@ -1,8 +1,6 @@
 package in.vamsoft.training.dbutil;
 
-
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -12,21 +10,28 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
-public class DBConnectionUtil {
-  public static Logger logger = Logger.getLogger(DBConnectionUtil.class);
+public class DbconnectionUtil {
+  public static Logger logger = Logger.getLogger(DbconnectionUtil.class);
 
+  /**
+   * This is the jdbc connection method;
+   * 
+   * @return it will be return the jdbc connection.
+   */
   public static Connection getConnection() {
     String driver = null;
     String url = null;
+
     String username = null;
     String password = null;
     Connection connection = null;
     try {
-      //FileReader read = new FileReader("src/database.properties");
-     InputStream read = DBConnectionUtil.class.getClassLoader().getResourceAsStream("database.properties");
+
+      InputStream read = DbconnectionUtil.class.getClassLoader()
+                          .getResourceAsStream("dbuser.properties");
       Properties properties = new Properties();
       properties.load(read);
-      logger.info("database conncetion done");
+
       driver = properties.getProperty("driver");
       url = properties.getProperty("url");
       username = properties.getProperty("username");
@@ -49,7 +54,10 @@ public class DBConnectionUtil {
     return connection;
   }
 
-  public  static void closeconnection(Connection connection) {
+  /** The method for closing the connection.
+   * @param connection.
+   */
+  public static void closeconnection(Connection connection) {
     try {
       connection.close();
       logger.info("connection close");

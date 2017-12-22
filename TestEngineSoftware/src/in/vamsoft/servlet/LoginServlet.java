@@ -1,5 +1,7 @@
 package in.vamsoft.servlet;
 
+import in.vamsoft.dao.UserDao;
+import in.vamsoft.training.model.UserModel;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import in.vamsoft.training.Dao.UserDao;
-import in.vamsoft.training.model.UserModel;
+
+
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -26,8 +28,8 @@ public class LoginServlet extends HttpServlet {
       UserModel user = new UserModel();
       String uname = request.getParameter("userName");
       String password = request.getParameter("password");
-      user.setUSER_NAME(uname);
-      user.setPASSWORD(password);
+      user.setUserName(uname);
+      user.setPassword(password);
 
       if (uname.equals("admin") && password.equals("admin")) {
         user = UserDao.admin(user);

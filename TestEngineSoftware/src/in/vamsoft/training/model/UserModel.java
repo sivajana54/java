@@ -1,65 +1,70 @@
 package in.vamsoft.training.model;
 
 public class UserModel {
-  private int USER_ID;
-  private String USER_NAME, PASSWORD;
+  private int userId;
+  private String userName;
+  private String password;
 
- 
-  
+  public int getUserId() {
+    return userId;
+  }
+
+  public void setUserId(int userId) {
+    this.userId = userId;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  /** the constructor
+   * @param userId.
+   * @param userName.
+   * @param password.
+   */
+  public UserModel(String userName, String password) {
+    super();
+    
+    this.userName = userName;
+    this.password = password;
+  }
 
   @Override
   public String toString() {
-    return "UserModel [USER_ID=" + USER_ID + ", USER_NAME=" + USER_NAME + ", PASSWORD=" + PASSWORD + ", valid=" + valid
-        + "]";
-  }
-
-  public UserModel(int uSER_ID, String uSER_NAME, String pASSWORD) {
-    super();
-    USER_ID = uSER_ID;
-    USER_NAME = uSER_NAME;
-    PASSWORD = pASSWORD;
+    return "UserModel [userId=" + userId + ", userName=" + userName 
+                                  + ", password=" + password + "]";
     
   }
 
-  public UserModel(String uSER_NAME,String pASSWORD) {
-    super();
-    USER_NAME = uSER_NAME;
-    PASSWORD = pASSWORD;
-  }
   public UserModel() {
     super();
-  }
-  public int getUSER_ID() {
-    return USER_ID;
+    // TODO Auto-generated constructor stub
   }
 
-  public void setUSER_ID(int uSER_ID) {
-    USER_ID = uSER_ID;
+
+ 
+
+
+  public boolean valid;
+
+  public boolean isValid() {
+    return valid;
   }
 
-  public String getUSER_NAME() {
-    return USER_NAME;
+  public void setValid(boolean newValid) {
+    valid = newValid;
   }
 
-  public void setUSER_NAME(String uSER_NAME) {
-    USER_NAME = uSER_NAME;
-  }
-
-  public String getPASSWORD() {
-    return PASSWORD;
-  }
-
-  public void setPASSWORD(String pASSWORD) {
-    PASSWORD = pASSWORD;
-  }
-  
-
-public boolean valid;
-public boolean isValid() {
-  return valid;
-}
-
-public void setValid(boolean newValid) {
-  valid = newValid;
-} 
 }
